@@ -1,0 +1,295 @@
+H,L are also called memory registers.
+
+Stack pointer is 16-bit register used to hold the memory address of the stack.
+
+8085 is a even parity microprocessor.
+
+Program counters and stack pointer are the 16-bit registers for holding the memory addresses.
+
+The maximum positive number that a 8085 microprocessor can process is 01111111(7F H), greater than this are taken as 
+negative numbers.It is because, the first bit is used for determining the sign of the digit.
+
+Whenever we use the M (Memory) in the instruction of 8085, the memory is always pointed by the HL register pair.
+
+About ports
+-The input port address in the 8085 microprocessor(ie,F6H) is a 8 bit address. So, total number of port 
+available are 2*8(256) ports.Similar port definition may apply in other cases.
+
+In 8085, if a keyboard is connected to one physical input port, then 8 lines are passed through that one
+physical port.Those 8 lines can address 256 different ports(not physical,same as memory addressing).Then, 
+after the input interface knows which key is pressed, it will be decoded and send to microprocessor(may be).
+
+Types of Registers:
+Registers are calssified based on two types:
+
+1)Based on the application
+  1.Storage registers.
+  2.Shift registers.
+
+2)Based on the input and output
+  1.serial in serial out (SISO)
+  2.parallel in parallel out (PIPO)
+  3.serial in parallel out (SIPO)
+  4.parallel in serial out (PISO)
+
+  *PIPO is a example of storage register.
+  *Shift register involves the shifting of the data in the flipflop.
+
+H,L are memory registers.The memory pointed by the LXI command is always H,L(always).
+
+Addresssing modes in microprocessor::
+Imediate addressing -- imediate operations
+Register addressing -- registers involved
+Direct addressing -- IN/OUT
+Indirect addressing -- 
+
+Complement doesnot affect any of the flags.
+
+The enable line in the registers is replaced by the address lines which identify the required register.
+
+READ and WRITE signals are sent to the tri-state buffers which are active low signal controlled by the control unit.
+
+If we use 1K memory unit (means 1024 registers), suppose we use 256 registers in a single column and make 4 such units.
+Then we need 2 chip select lines to select the required memory block and 16 bit address line to select the 
+required register in the block.
+
+Sign flag is used to recognize the negative number only for the signed numbers(not for the unsigned numbers).
+
+The opcode fetch process in the 8085 is recognized with the help of I/O and MEMORY READ/WRITE signals.
+for exmaple, if the user inputs ADD***, then microprocessor knows that it is a binary instruction 
+not a data or address using these signals.
+
+Programming::
+The arithmetic operations carried out on 8085 always affect the flag conditions.
+INR and DCR affect all falgs except carry flag(even if the result after increment becomes 9 bit.)
+
+While carrying the subraction of the unsigned numbers, if greater number is subracted from the smaller number
+then,the carry is complemented to know the carry flag.The D7 bit shows the number is positive or negative.
+For example,
+
+39H-30H will generate carry 1(by 2's complement method but in reality no burrow is needed),so it is complemented 
+know set the status of the carry flag.
+  
+30H-39H will generate carry 0 (by 2's complement method but in reality burrow is needed), so it is complemented 
+to know the status of carry flag.
+
+While carrying out the logical AND operation, CY flag is reset and AC flag is set is 8085.
+
+CMA (complement) operation doesn't affect any flag.
+
+Instruction cycle is the time required to complete the execution of one instruction.
+One instruction cycle constist of many machines cycles(opcode fetch,decode,I/O write,read etc..).
+Many clock cycles are required to complete one machine cycle.(Known as T-states......address line acticvate garni
+data lines ma value rakhni etc...).
+One clock cycle means 1/frequency of the processor.
+If the frequency of the processor is 10Hz, then 0.1sec is one clock cycle.One machine cycle may require
+one or many clock cycles.
+
+To understand the difference between signed and unsigned numbers - https://www.youtube.com/watch?v=miwMEUfkqfY
+
+LXI -- immediately loads the 16 bit data to the register pair.
+MOV A,M -- When we use M in 8085 programming, M is memory location represented by HL pair.
+LDAX B/D -- This instruction load accumulator with the data from memory location specified in BC or DE pair.
+LDA 16-bit -- Direct addressing mode.
+
+Flag registers are not only for the accumulator.They get changed whenever any arithmetic operation is carried out.
+
+XRA A clears the register A to 00H
+To clear the other registers, first clear the accumulator and the copy the result to required register.
+
+Partial address decoding, i couldn't understand::
+
+The address of the input output device means that, the certain bit pattern flowing through the address lines
+select that particular I/O device.For example,if all bits flowing though the address lines are 1 then particular
+I/O device is selected and operation can be performed.If only 8 address lines are used then microprocessor can
+only identify 256 I/O devices.
+
+(May be)The physical port which is used to connect the I/O devices to the microrocessor consist of the address lines
+for the addressing of those devices and the I/O interface is connected thereafter.
+
+Rotate instruction in 8085::
+RLC -- rotate accumulator left (D7 bit goes to the D0 position using the CY flag latch,leave value 1/0(D7))
+RAL -- rotate accumulator left through carry  (Use the CY flag bit as it's ninth bit)
+RRC -- rotate accumulator right
+RAR -- rotate accumulator right through carry
+
+Both rotation through carry or without carry affect the CY flag but in different way.
+
+While carrying the compare instructions, the data in the accumulator do not change after the operation also.
+
+Interrupts are the signals given by the input output devices to the microprocessor when they are ready for the
+data transfer.(we used IN/OUT instruction in the 8085 which is the typical case of the I/O devices were already 
+redy for thr data transfer).
+
+There are 3 ways the microprocessor transfer the data with it's peripherals which are much more slower than it.
+1.Basic data transfer->Programmer knows the delay time of the peripheral,so it cause the microprocessor to wait 
+for certain time until data transfer is finished.(if peripheral is 1ms slower than MP has to wait 1ms).
+
+2.Status check data tranfer->Here, the microprocessor continuosly checks if the peripherals are ready to trabsfer
+data.Microprocessor goes in the loop until it receives the signal to transfer data.
+
+3.Interrupt-driven data transfer->Here, microprocessor needn't waste it's time to wait for it'e peropherals.
+It continue to execute the instruction and checks if there is any interrupt at the end of one instruction
+and performs the data transfer.It does not check for the interrupt if the if the microprocessor is executing 
+the subroutines.
+If there are multiple interrupts, there is a priroty order of interrupts to be handled first.
+
+DMA data transfer is the direct access of the system buses to teh I/O peripherals so that the data transfer can 
+be done in the faster rate.
+
+All the programmable and the non-programmble interupt devices we study in the microprocessor 8085
+are for the data transfer that may be occur from user or the memory devices or the output devices.
+
+DMA data transfer is done only for the block of data transfer.Once the grant signal is provided by the 
+microprocessor then the block of data is tranferred.To again perform the data tranfer request signal should be 
+again sent to the microprocessor.
+
+The stack pointer register stores the address of the stack which ot points to.If the SP register is pointing 
+to the stack memory XXF6H, then the stack memory above the XXF6H is filled with useful memory and below it is the 
+useless memory.So, the reading of the stack(POP) is done from SP++(2 byte at a time) and writing in the stack is done 
+from top to below ie, SP-- (2 bytes at a time.)
+
+Flag registers can also be stored the desired values.
+mvi a,data
+push a
+pop psw //psw ko barema look!!
+
+Signed and unsigned integers::
+Unsigned integers are positive integers to which the computer do not account for the '+' or '-' sign and signed 
+intergers are the intergers with sign '+' or '-'.
+
+The MSB of the certain word size representing the signed integers represent the sign of the integers.
+
+To represent and perform the arithmetic operations of the signed numbers by the computer,different ways are defined::
+1.Signed magnitude method
+2.1's complement method
+3.2's complement method
+Among these three methods, computer uses the 2' complement method.(see processor PDF page-37 for clarity.)
+
+W and Z register are used to hold the instruction bytes when the opcode is more than one byte.First byte of the 
+instruction goes to the instruction register and the 2nd,3rd bytes goes to WZ registers as required.
+So, the program counter does not always increment it's value by one.If the instruction is of 3 bytes then the first 
+memory location is specified by PC and the 3 bytes instructions are consecutively loaded to the IR,W,Z registers
+and then the PC is incremented by 3.
+
+When the 8085 microprocessor is interrupted by any interrupt ports, microprocessor should execute the ISS(interrupt 
+service routine) for which the microprocessor should load the instruction register with required instruction.BUT,
+microprocessor does not load the IR itself as it will not know what type interrupt it is.So, interrupt controller
+is required to do this job.
+(If the interrupt is for taking the keyboard input, that particular interrupt ISS should be loaded.)
+
+ISS has three main parts::
+1.To store all the values in the registers in the stack which could be affected by the ISS operation.
+2.Second part of the ISS does the actual purpose of ISS.
+3.Third part of this subroutine POP the values of the stack again in the place where they actually were at first.
+
+ISS also disable all the interrupts until it finishes the subroutine operations.
+
+I/O devices cannot be directly connected to the microprocessor because of the various reasons.So, there must be an 
+interface between the input output devices and the microprocessor which we called the input port chip or thr ouput 
+port chip.So, basically a port is a interfacing chip which connects the I/O devices to the microprocessor which connects
+itself to the system buses and maintain the signals like tristate buffers,ACK...etc for the actions to be peformed by the
+I/O peripherals.
+
+The data tranfer between the I/O ports is performed by the system buses but the data transfer from the I/O ports to 
+the I/O peripherals is done by the buses other than the microprocessor buses.
+
+The I/O port chip also contain the registers to hold the data because the speed of the microprocessor and the 
+I/O devices are not same.
+
+I/O ports and the I/O devices first makes the request and the acknowledge signal transfer with each other
+then only the interrupt is sent to the microprocessor.
+
+8212 is a non-programmable peripheral interface while 8255 is a programmable peripheral interface.
+
+8212 port chip can be used a input or the output port chip according to the signal 1 or 0(in mode line).
+If the mode line is provided vcc it acts as input device while if it is grounded it acts as ouput device.
+
+Mode 0 in 8212 causes the chip to act as input port chip and mode 1 as output port chip.
+
+The chip select is always produced by the decoder which decodes the address lines which are also identified as port
+address.
+
+8255 provides 4 I/O ports. two of 8 bits and 2 of four bits.  
+8255 consists of control register which is used to program this chip.Each bit value in this register signifies the mode of 
+operation like input or output,which I/O port to be selected(it provides 4 ports for I/O operations)etc...
+
+When 8212 port chip is to used as input port then the interrupt line of this chip is connected to the interrupt of the 
+8085 microprocessor.So,when the data is entered, data gets buffered in the register of 8212 by which the flip flop 
+inside it gets reset and the interrupt line gets high.As the microprocessor checks the interrupt at the end of every 
+instruction cycle,it finds that interrupt line and the data transfer takes place from the buffer to the M/P.
+
+The interrupts that the microprocessor receives are controlled by the flip flop inside the microprocessor.All the 
+interrupts pins of the microprocessor 8085 functions only if the interrupt enable flip flop is enabled.
+
+The interrupt service subroutine is called by the RST instruction.Let us suppose there are 8 interrupts line 
+which are connected to the 8-3 encoder.When the 5th line goes low the INTR(interrupt request goes high) 
+(INTR can be replaced by other interrupt line as well ex,RST 7.5,6.5,5.5)which interrupts the microprocessor.
+Subsequently, the INTA(interrupt acknowledge) is sent by the microprocessor which enables the interrupt 
+buffer.Suppose the 5th interrupt line was interrupted then the correspoding RST instruction (Here RST5 (11101111))
+would go to the data lines calling the corresponding ISS.
+
+(Yo mathiko exmaple ma 8 ota I/O peripherals ko interrupt signal haru 8-3 ko encoder use garera sabaiko interrupt)
+lai INTR ma jodeko ho. Aru interrupt line pani garna sakinxa.
+
+If the bitwise operation is performed for thr signed integers, then the result will be compiler dependent because
+there may occur logical shift or arithmetic shift.
+Arithmetic shift cause the vacated positions to be filled by the D7 bit.
+While the logical shift always cause the vacated positions to be filled by zero.
+
+Masking means making the desired change in bit by bitwise ANDing, ORing, X-ORing etc..
+For example,
+if we have a byte 11110011, and we AND it with byte 00001100 then the result becomes 00000000.This is called masking.
+
+Masking the bit can be used in encryption and decryption.
+If we X-OR the byte then the byte will get complemented.So,if we X-ORed the same byte twice the resulting 
+byte will be same which is first encrypted(first complemented) and then decrypted(second complemented).
+
+Similarly, values can be checked for equality by masking(doing XOR with the same value results zero.)
+
+Decoding means the control unit generating the proper signals for carrying out the operation.
+
+The dual use of the data bus AD0-AD7 is done by using a appropritate IC.So,some programmbale chip constains the circuits to 
+demultiplex the bus which ensures that the separate IC is not required.
+
+Synchronous serial data transfer is carried out when there is the need of faster data transmission.
+
+Serial data communication is of two types::
+1.Simplex data transmission->Data flow in only one direction(Computer to printer) 
+2. Duplex data transmission->Data transmission in both direction.(Half duplex and full duplex also)
+
+The rate of the transmmission is called the baud rate(sth bits/sec).
+
+The error in the data can ne checked by various methods like parity check,checksum(sending the negative of the number
+to be transmitted and the receiver adds the data the negative number sent which results zero, otherwise error in data flow)
+
+Bandwidth is the amount of the data transfer in a given amount of time while speed is the rate at which the data is 
+trasnmitted.
+If water flowing is the bandwidth then the rate fo flow of water is the speed.
+LAtency is the time which the information takes flowing from the source to the destination.
+
+Multitasking means performing the multiple task in a single clock cycle.(Fetch,decode and execute done parallely)
+
+Multiprocessing means multiple processor processsing the instruction in a single clock cycle.
+
+While carrying out the addition operation of the 16 bit data in 8085 microprocessor we first add the last 8 bits of both 
+operands and performs the add with carry operation of the last 8 bits data.ie,ADC - add with carry.
+
+Arm and x86 based processors::
+x86 based processor are the traditional processor emphasizing the performance of the CPU which many complex 
+instruction sets(CISC--complex instruction set computing).They are performance focused in the expense of the power.
+
+Arm based processor are the power efficincy based processors focused more on the less power comsumption with 
+simple instruction set.(SISC--Simple instruction set computing.)
+
+With more complex instructions the decoding process in the CPU draws more power but can perform very complex
+arithmetics and processing.
+
+
+
+
+
+
+
+
+

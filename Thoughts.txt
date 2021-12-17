@@ -1,0 +1,102 @@
+Question::
+How is energy generated from mass? or vice versa.
+How is magnetism generated from current? or vice versa.
+How is time generated from space? or vice versa.
+Why electrons revolve around the nucleus??
+--May be because of the magnetic field present which we don't know.
+
+
+Reltion between space and time, mass and energy, current and magnetism::
+If a object takes less space, then it will have slower time.(space ma gako spacecraft ko time is slower than earth time
+because spacecraft occupies less space than earth:: twin paradox)
+
+If a object has less mass, then it will have less energy.
+
+Likewise, if there is less current, magnetism generated is less.
+
+Similarly, all the statements are true reverse also.  //(may be if a object occupy very very less space ie,0 or point 
+then it will experience no time ie, time freezes.)
+
+But if larger mass tends to occupy the point space then it will curve the space-time curve.(worm hole.   //then speed 
+of time increases largely.)
+
+There is always energy in the steady state of mass.
+There is always time in steady state of space.
+There is always magnetism in steady state of electrical current.(but are disoriented)
+
+Larger energy can be generated if we concentrated mass in one place.
+Larger magnetism can be generated if magnetic dipoles are oriented rightly.
+Greater speed of time can be generated if larger mass could be concentrated to point space.
+
+Electron flow causes the magnetism.
+Contraction and relaxation of space causes time.
+State(rest or motion), state(matter) change of mass causes energy.
+
+Why does the current carrying conductor creates magnetic force -- https://www.youtube.com/watch?v=1TKSfAkWWN0
+
+Actually the magnetic force is the illusion from our frame of refrence but is the elctrical force from 
+the atomic level refrence.For clarity, see above link.
+
+Maybe likewise, the time and the energy can be the illusion from our frame of refrence.(think)
+
+When the firewoods are burnt, we feel that heat energy is produced.But what if it only from our frame of refrence.
+But actually it is only just a process of transformation of mass from one form to another(woods to ash).
+
+Electricity is the movement of electrons from one atom to the another atom.For example,copper is good 
+conductor of electricity beacause it has one electron in it's outermost cell so it can allow that electron
+to move to another atom.
+
+Voltage is the energy that cause the electron in the outermost cell to move to another atom.
+
+The DC current also can be stepped up or stepped down with the help of circuit containing transistors,
+diode, inductors and capacitors.
+The back emf produced in the inductor is stored in the capacitor to step the voltage up.
+
+Quantum means not having a continuous chain and can be separated into small parts.
+For example, a TV screen is made up of pixels which are quantized at very tiny level means 
+they are not chains going up to infinity but can be counted as different modules.
+
+Quanta means the smallest size that cannot be broken down into smallest pieces further.
+Like previously assumed as atom was the smallest one in the universe and later electron and other particles discovered.
+
+Planck length is the smallest length possible.(10^-35 m)
+Planck area is the smallest area and
+Planck volume is the smallest volume.
+
+Which all comprises a small quanta which have length planks length,area planck area and volume planck volume.
+These quanta forms the space.
+
+Also there is the limit to the smallest time that is planck time(10^-43 sec).
+
+https://www.youtube.com/watch?v=XRr1kaXKBsU --- very important
+
+What happens when we cast the shadow of our finger onto the moon and move the finger by 1cm.Will shadow move over 
+the surface of the moon.
+
+Why only binary system is used in the computers?
+Although we say, current flow is 1 and no flow of electricity is 0 but we could have make the current level of 1,2,3,4,5
+quinary or a octal systems.
+
+only 2 states of current flow are taken into considerations because the current flow is changed because of the 
+waves around us so that if we wanted to send the level 4 current, current of level 2 might flow because of 
+current limiting things around us like microwaves.That is why there is a certain level of current flow for individual
+1 and 0 state.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,458 @@
+Each objects of the class specific gets the different copy of the data members in the class but all the objects share 
+a common copy of the member functions.
+
+The objects make the proper sharing of the methods by using the this pointer.Whenever the specific function is called by
+the object, this pointer is associated locally in the called functions which points the caller object.
+
+Static memberes have the file scope(means they are only available in the source file) but the global members have the
+program scope(available throughout the program.)
+
+Always treat objects of the class as the variables in the c programming language.
+
+The strcut tm in the header file ctime(), i haven't understood.
+
+Why the constructors do not have the return type?
+Constructors cannot be called for the preexisting objects, therefore it doesn't have the return type.
+For example, if the object of the class Account is made as acc, then constructor for the acc cannnot be 
+called again.It get called itself during the object formation.
+
+How do the constructors help in the initialization of the objects?
+Object initialization means assigning the values to the defined variables.Sometimes, the objects need to be
+assigned a specific value when it is defined (like int x=2).For this, we can assign the value at the declaration like
+(string name("something")), but the problem arises, because the same name will be assigned to all the objects created.
+So, to assign the different initial values to the objects the constructors of different types can be called.
+
+*The default constructor called implicitly don't initialize the objects.
+
+Unions are only different in the sense that they can't store the multiple data members simultaneously.
+
+The vlaues of the objects can be assigned to another object by direct assignment symbol(=).
+
+wchar_t has same functionality as the char but the difference is that the wchar_t uses twice as much memory as 
+char type.Only 256 representation of the characters can be made by the char while 65,000+ characters representation
+can be made using wchar_t.
+
+constant pointer to constant object - const char *const ch;
+pointer to constant object - const char* ch;
+
+Operator overloading::
+ In c&c++, the operators are designed to be worked only with the primitive data types.
+ To make the operators work for the user defined classes and structures operator overloading is done.
+ For example, two strings can be concactanated using the + symbol in c++ using the concept of the operator overloading.
+
+The increment in the refrence does not increase the refrence but increases the value refrenced by the refrencer.
+
+Lvalue means the object whose address we can get.
+
+char name[10]="Nirajan";
+char* pname;
+
+Here pname is the another name for name which can point the address of the array.
+name is also the pointer to it's first element but a constant pointer.
+But, pname is not a constant pointer, so can be incremented or decremented.
+
+Read and Write functions of fstream left::
+
+Copy constructot means initializing one object with the other object.
+Here, the data of one constructor is copied to the next object.It is just like assigning the data values of one 
+object to another object.
+obj1(obj2) is a copy constructor which is equivalent to obj1=obj2
+
+Global operator cannot access the class members.To access the class members, friend function is needed.
+Friend function is the function which can access the private members of the class in which it is declared.
+
+Jun classma friend function or friend class declare garinxa tyo class ko members ra methods haru chai 
+tyo friend class or friend fumction le use garna pauxa but the reversed is not true.
+exmaple::
+class Student()
+{
+  //...
+  friend Teachers();     
+}
+                               //Teachers class le Student class ko members and methods use garna pauxa, not reverse.
+                               //Same for friend funtion.
+class Teachers()
+{
+  //....
+}
+
+The '&' sign used to pass the address of the object is different than the refrence '&' sign.
+
+The address of '&' operator passes the address of the object but the '&' used to refrence the object pass the 
+address of the refrenced object(alias of the object name).
+
+The pointer variable require the additional memory but the refrence variable do not require additional memory
+because it directly refrence the object while the pointer varaible requires the indirection operator for refrencing
+and defrencing the object variable, thus pointer variable also requires memory.
+
+    int x=45;                    //object we are talking about
+    cout << &x << endl;          //address of x;
+    int* xpoint=&x;              //assigning address of x to pointer variable
+    cout << xpoint << endl;      //xpoint shows same address as &x do;
+    cout << &xpoint << endl;     //but, xpoint itself needs memory to store address value of x;
+    int& xref=x;                 //x is refrenced by xref
+
+    cout << xref << endl;        //shows value of x=45;
+    cout << &xref;               //shows same address as of x;    means no memory required for xref;
+
+Refrence must be initialized imediately after being declared.
+
+Refrence means giving a name to a memory location.If the memory location has the name already then it can be accessed 
+by two names and if it has no name(ie, created dynamically) it can be accessed with the refrenced name.
+
+Refrencec can be of return type also.For example::String& str(){ return name; }
+While returning the refrence, we should keep in mind that the refrenced object must have global scope.
+so it's better to declare any object inside the function as static when returning by refrence.
+
+The function which returns the refrence to the object acts as a object.so all the operations carried out to the
+object can be cone to the function also.
+
+Operator overloading can be done by both global and class's method way, but the exception is that '=', (), []
+-> cannot be overloaded by global methods as they require l-value as their operand(operand in left must be the object).
+
+Although the friend function can access the private members of the other class, this pointer of those 
+members is not available for them.
+
+After declaring the friend function or the friend class, a object must be passed to function or method to use the
+private data of the class where the friend function or class is defined.
+
+class A
+{
+    int n;
+public:
+    friend class B;
+};
+
+class B
+{
+public:
+    void setData(A& a)                   //here object a is passed as argument to use the private members of class A.
+    {
+        cout << "Write int." << endl;
+        cin >> a.n;
+    }
+};
+
+int main()
+{
+    A a;
+    B b;
+    b.setData(a);
+
+Input and Output operations of objects(user defined types)
+
+friend ostream& (ostream& output, Complex& C1)
+{
+  output << "The real part is " << C1.real;
+  output << "The imaginary part is " << C1.imaginary;
+}
+
+friend istream& (istream& input, Complex& C1)
+{
+  cout << "Enter real part" << endl;
+  input >> C1.real;
+  cout << "Enter imaginary part";
+  input >> C1.imaginary;
+}
+
+int main()
+{
+ Complex C;
+ cout << "Enter complex number";
+ cin >> C;                        //here real and imaginary part are taken as input
+}
+
+subscript operator overloading garne vaneko class ma vako array element chai class ko object le 
+subscript operator rakhera access garne ho.
+
+Type conversion is required to make the working between primitive data type and user defined data type possible.
+
+To make the type conversion between primitive and class type::
+int x;
+x=C1       //to convert the class type to integer type
+
+we make the use of the constructor
+Complex (int i)
+{ data=i; }          //this will assign the primitive data value to the class data variable
+
+to convert the class type to primitive type
+operator <datatype>()
+{ return data; }     //this will return data value to the required primitive variable
+
+string name("Nirajan")--vaneko C string ko type convert garera string type ko banako ho.(constructor call with one parameter)
+
+When the user defined types are typecasted to the standard type, then the typescasted data type can again be typecasted
+to another stansard data type.
+example::
+double x=salary     //salary is user defined object
+int i=x             //salary is typecasted to double and double again to integer.
+
+HAS-A and IS-A relationship::
+class Person
+{
+  private:
+    string name;   //a person has a name  :: has-a relationship
+    int age:       //a person has a age :: has-a relationsip
+}
+
+class Worker  : "is a person"    //is a relationship
+{
+  private:
+    string jobtitle;      //a worker has a job title :: has a relationship
+    double hourlyrate;
+}
+
+The derived classes from the base class can have the direct access to the public members but not the private
+members.
+
+If a method defined in the base class is redefined in the derived class, then object of the derived class will 
+always access the method in the derived class.To access the same method defined in base class one should use
+the scope resolution operator.
+example:
+S.Human::setage();      //S object of student class accesing method of Human class.setage() method is defined twice, so::
+
+When the memory is allocated dynamically the memory does not have the name.It is only identified by the pointer
+which points it.
+
+int* ptr;
+ptr=new int(10);   //allocating memory dynamically (which doesn't have a name)
+int& num=*ptr      //assigning the name to the memory (ie, refrence)
+
+delete operator is used to release the memory created dynamically.
+***delete OPERATOR SHOULD BE USED VERY CAREFULLY***
+1.It should not be used to release the statically allocated memory.
+2.No two delete operations should be done to single memory.
+
+While accessing the methods of a class using dynamically allocated object -> operator shoud be used instead of the 
+. operator.
+
+QUESTION -- What does the dot operator return ??
+
+"Enter" clears the buffer::
+
+Dynamic members ia left::
+
+When the object of the derived class is defined, the constructor of the base class should also be called.So, the 
+sub object of the base class calls it's constructor and only the constructor of the derived class is called.
+The constructors are called core outwards.
+
+Initializiers are required ti initialize the constant varaibles and refrence variables.
+Constructor cannot be called to initialize the constant and refrence variables.
+
+Derived class can only access the public methods and members of the base class.
+Protected access specifier just allows the methods to be accessed in the derived class not to it's users(outside class.)
+
+Availability and accessibility are two different things.
+Private members are available to the objects of that class but not accessible.
+
+Inheritace
+class A:public B  //here, the 'public' is the visibility mode
+
+Derived class:public Base_class1,Base_class2,.....                             //can specify any number of base classes.
+
+The visibilty mode defines how the methods and the members of the parent class are accessible to the users of 
+the child class.
+ie, we state the visibility mode of the data members and the methods in a single class as public or private::
+Likewise, the inheritated properties and methods should also have the accesibility mode for the users of 
+derived or child class.(If confused, see saurabh shukla 2nd part.)
+
+Base pointer can only access the public interface of the base class.
+Example::
+class Car
+{
+  //properties and methods
+}
+
+Car* carptr;      //pointer to the car base class.
+
+How are the constructors called for the objects of the derived classes??
+When the objects of the derived class are made, constructor for the derived class is called but the derived class 
+constructor automatically calls the base class constructor before it executes itself.
+
+When we create the object of the derived class then the sub objects of the base classes re formed.
+
+A is parent class and B is derived class,then
+B obj;        //object of derived class 
+
+here, first B(){}; constructor is called but it calls base class constructor ie,
+B():A()         //Here A() is base class constructor which ic defined in the base class.
+{ };
+
+So, when we make the object of the derived class, derived class constructor is called first which calls the base class
+constructor but base class constructor is executed first then the derived class constructor is executed.
+
+Also when the destructor of the derived class is called then the memory of the base class is to be released.So,
+When the destructor for the derived class is called then it automatically calls the destructor for the parent class.
+The destructor the derived class is called and executed first then the base class destructor is called and executed
+by the derived class destructor inside it.
+
+<<When the refrence of any variable is passed to the another variable, the assignment operator performs first and 
+then the refrence(address) is passed>>**MAY BE**
+
+Casting means assigning the object of one class to another.
+
+Upcasting (casting from derived class to the base class ) is done implicilty.
+Downcasting must be done by defining the assignment operator.
+
+Upcasting is done using the is a relationship.
+For ex, Base class -- staff
+            Derived class -- Teacher   ,    Student
+A teacher is a staff so, teacher can be assigned as staff which is upcasting.
+But a staff may not be teacher so assignment directly is not possible.
+
+Therefore a base pointer can be made so that the pointer points to the teacher's members not the student's.//Downcasting!!
+
+this pointer is the object pointer which points the caller object.this pointer is formed implicitly for every instance
+members.When a object calls any class function this pointer gets the address of the caller object and the 
+operation is carried out.
+this pointer always points the caller object.
+For example,
+this->length=length;
+breadth=this->breadth                //here this is representing that the they are the data members of caller object.
+
+Method overloading -- same function name but different arguments and application becomes different
+Method overriding  -- same function name and arguments in Base and derived class so that only derived gets called(always)
+Method Hiding -- same function name but with aruments list lists.
+
+When one function is overridden and then we want to access the overridden function by the base class pointer,
+base class pointer always calls the function defined in base class not the derived class.So to overcome this flaw
+the function to be overridden is declared as the virtual function.
+
+When we want to access the overridden function of the derived class the function we wanted to call ie,derived class function
+is called only if it is declared as the virtual function in base class.
+
+When one function is defined as virtual in it's base class then the function is considered as virtaul in all other
+classes.
+
+Virtual functions helps in cheiving the runtime polymorphism.
+
+Compiletime polymorphism--same function name doing different works
+Runtime polymorphism -- acheived using the virtual function.
+
+Rules for Virtual Functions
+
+Virtual functions cannot be static and also cannot be a friend function of another class.
+
+Virtual functions should be accessed using pointer or reference of base class type to achieve run time polymorphism.
+
+The prototype of virtual functions should be same in base as well as derived class.
+
+They are always defined in base class and overridden in derived class.
+
+ It is not mandatory for derived class to override (or re-define the virtual function), 
+in that case base class version of function is used.
+
+A class may have virtual destructor but it cannot have a virtual constructor.
+
+Early binding means the compile time binding of the methods to the objects.
+Late binding is the runtime binding of the methods to the objetcs.
+
+The concept of the virtual functions is implemented by the use of the vptr pointer and vtable.
+vptr and vpointer are created by the compiler implicitly.
+
+When there is the early binding of the function with the objects using base pointer method the compiler use the 
+type of pointer(base type) to recognize it's type.So,functions calls are first searched in base class.
+
+But when there is late or dyanamic binding compiler looks for the vptr which points to the vtable where functions to be 
+called are pointed.So that the actual function(overridden function in derived class) we want to call is called.
+For example,
+If the function defined in the base class is overridden in the derived class and want to access the derived class function
+using the base class pointer.But if the compiler does the early or static binding then base class pointer will call the 
+function defined in base class(as compiler sees the type of pointer to call).And if we make the function virtual and 
+do the late binding then the vptr pointer and vtable are created to implement the virtual concept.Then the compiler
+doesn't look the type of the pointer but look for vptr pointer which has the address of all virtual functions and calls
+the correct one.
+This is way to implement the runtime polymorphism.
+
+Abstract class is the class which contain the pure virtual function.
+Pure vitual functions -- having declaration but no definition.
+
+No no objects can be made of the abstract classes.Abstract classes are made only because they help to systematize the 
+software.
+
+Template means the general definition for different data types if the function of the code is same for all data types.
+
+Extraction and insertion operator assumes the space, tab and the line feed as the data delimiter.So,when reading characters
+from a file these characters are lost.
+
+Private members os the class cannt be initilized in the class at the time of their declaration.So, constructor
+and initializiers are there to initialize those member variables.
+
+Constant variables are those which need to be given value at the time of the declaration(cannot be later changed.)
+So, to initialize the private constant variables in a class initializers are needed.
+For example::
+class Dummy
+{ private:
+       const string name;        //It cannot be initialized here because memory is allocated untill object is made
+   public:
+       Dummy() : name("Nirajan")    //It is how we initialize the constant variables in class(called initializers).
+{     }	
+
+But it worked in codeblocks????
+
+when we initialize any object with another object the copy of the data members are done by two methods::
+Deep copy and shallow copy
+
+Shallow copy is done by copy constructor.  When the onject is assigned at the time of the declaration (Dummy D1=D2)
+Deep copy must be done by defining the copy constructor ourself.
+//See saurabh shikla video
+
+Dynamic constructor is not the constructor called for the dynamically allocated object.
+When the class has a pointer pointing to a certain memory block, the handling of that memory block is done the 
+class of that constructor which is called dyanamic constructor.
+
+Namespace::
+In C laguage,functions predefined were declared in the header file so we had to include the header file to run 
+those functions.
+In C++, function predefined are also declared in the header file but those functions or variables declared there
+are grouped together which we call the namespaces.
+The advantage over making the group or the namespace is that if we have the multiple header files and we have 
+declared same name for different function then there occurs ambuigity.If we make the group or the namespaces 
+then the name might get same but the namespace will be different.
+
+namespace ABC=std;    //alias for the namespace.
+
+Scope resolution means scope resolve.
+
+Virtual classes are different than the virtual function.
+Virtual classes are made to solve the ambiguity which occurs due to the multiple instances of the base classes.
+For example,If two derived classes are derived from the same base class and another class is derived taking former two
+derived classes as base classes,then the later formed derived classes will contain the instances of the topmost
+base class's twice which will create the confusion which data instances are to be called.
+
+Base initializers are used in following situations::
+1.For the initiaization of the constant data members inside the class.
+2.For the initialization of the refrence variables in the class.
+3.For the initialization of the objects which are data members of another class whose default constructor is not defined..
+
+Error conditions in the program::
+1.Invalid input by the users.
+2.No memory for the dyanamic allocation of memory.
+3.Division by zero.
+4.Data too small or large for that data type.
+5.File not found.
+
+The file mode ios::out must be combined with other I/O file modes other wise the file will truncated(starts as a new one).
+
+When the file is opened in the text mode the indicator for the newlines and the end of the file are interpreted separately
+but in binary mode they are saved as the way they are.
+
+Whenever there is error in the read operation of the file the fail bit is raised and thus we can get the information of the
+reading failure by calling the fail function.
+if(myfile.fail())
+{  cout<< "File not found."  }
+
+File must be closed after it's use because there is the limit for the number of files to be opened by the program and also 
+if file is not closed properly, data might get lost.
+
+
+
+
+
+
+
+
+
+
+
+
