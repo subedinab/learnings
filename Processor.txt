@@ -1,3 +1,4 @@
+i can easily edit it now thats it .
 H,L are also called memory registers.
 
 Stack pointer is 16-bit register used to hold the memory address of the stack.
